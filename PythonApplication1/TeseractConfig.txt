@@ -1,0 +1,8 @@
+textord_dump_table_images 1
+textord_show_tables 1
+textord_tablefind_show_mark 1
+textord_tablefind_recognize_tables 1
+textord_tabfind_find_tables 1
+interactive_display_mode 1
+edges_max_children_per_outline 1
+edges_maxedgelength 1

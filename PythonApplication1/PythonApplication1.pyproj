@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>95fe6630-2809-4df1-94df-7d31d96c9e49</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>RotateProgram.py</StartupFile>
+    <StartupFile>teseractOcr.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -32,13 +32,59 @@
     </Compile>
     <Compile Include="DeleteFilesProgram.py" />
     <Compile Include="CreateTeachList.py" />
+    <Compile Include="models\TextModel.py" />
     <Compile Include="RotateProgram.py" />
+    <Compile Include="teseractOcr.py" />
+    <Compile Include="TextRecognitionProgram.py" />
     <Compile Include="TypingProgram.py" />
     <Compile Include="PythonApplication1.py" />
+    <Compile Include="Utils\GenerateCharacters.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\TextDetection.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />
     <Folder Include="dao\" />
+    <Folder Include="fonts\" />
+    <Folder Include="images\" />
+    <Folder Include="images\fonts\" />
+    <Folder Include="models\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\arial.ttf" />
+    <Content Include="fonts\arialbd.ttf" />
+    <Content Include="fonts\arialbi.ttf" />
+    <Content Include="fonts\ariali.ttf" />
+    <Content Include="fonts\ariblk.ttf" />
+    <Content Include="fonts\CALIBRI.TTF" />
+    <Content Include="fonts\CALIBRIB.TTF" />
+    <Content Include="fonts\CALIBRII.TTF" />
+    <Content Include="fonts\CALIBRIL.TTF" />
+    <Content Include="fonts\CALIBRILI.TTF" />
+    <Content Include="fonts\CALIBRIZ.TTF" />
+    <Content Include="fonts\SEGOEUI.TTF" />
+    <Content Include="fonts\SEGOEUIB.TTF" />
+    <Content Include="fonts\SEGOEUII.TTF" />
+    <Content Include="fonts\SEGOEUIL.TTF" />
+    <Content Include="fonts\SEGOEUISL.TTF" />
+    <Content Include="fonts\SEGOEUIZ.TTF" />
+    <Content Include="fonts\SEGUIBL.TTF" />
+    <Content Include="fonts\SEGUIBLI.TTF" />
+    <Content Include="fonts\SEGUILI.TTF" />
+    <Content Include="fonts\SEGUISB.TTF" />
+    <Content Include="fonts\SEGUISBI.TTF" />
+    <Content Include="fonts\SEGUISLI.TTF" />
+    <Content Include="fonts\TAHOMA.TTF" />
+    <Content Include="fonts\TAHOMABD.TTF" />
+    <Content Include="fonts\TIMES.TTF" />
+    <Content Include="fonts\TIMESBD.TTF" />
+    <Content Include="fonts\TIMESBI.TTF" />
+    <Content Include="fonts\TIMESI.TTF" />
+    <Content Include="TeseractConfig.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

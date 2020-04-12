@@ -46,7 +46,7 @@ for id in ids:
         response = requests.get(url)
 
         if (response.headers['Content-length'] != '0' and response.headers['Content-type'] == 'image/png'):
-            img_tensor = net.load_iamge(response.content)
+            img_tensor = net.load_image(response.content)
             predictions = model.predict(img_tensor)
             img = Image.open(BytesIO(response.content))
 
