@@ -8,7 +8,7 @@ class TextDetection:
     def get_text_images(image_path):
         image = cv2.imread(image_path)
 
-        w = 2000.
+        w = 3000.
         height, width, depth = image.shape
         img_scale = w / width
         new_x, new_y = image.shape[1] * img_scale, image.shape[0] * img_scale
@@ -45,5 +45,5 @@ class TextDetection:
         return image_list
 
 
-# td = TextDetection()
-# images = td.get_text_images(r'C:\trash\docs\blank-torg12-zapolnenny-obrazets-19-oborot.jpg')
+td = TextDetection()
+images = td.get_text_images('/mnt/c/rrr/Рисунок (392).jpg')

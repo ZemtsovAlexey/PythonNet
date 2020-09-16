@@ -1,7 +1,7 @@
 from __future__ import print_function
 from tesserocr import PyTessBaseAPI, RIL, iterate_level
 from PIL import Image
-import tesserocr
+# import tesserocr
 import cv2
 import numpy as np
 
@@ -35,7 +35,7 @@ with PyTessBaseAPI(lang='rus+eng') as api:
 
     for r in iterate_level(ri, level):
         if ri.BlockType() == tesserocr.PT.TABLE:
-        print("found a table\n")
+            print("found a table\n")
         x1, y1, x2, y2 = ri.BoundingBox(level)
         image = cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
         symbol = r.GetUTF8Text(level)
