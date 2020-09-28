@@ -2,6 +2,8 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 import os
 
+# tf.enable_eager_execution()
+
 FILE_NAMES = ['Payroll', 'CallbackClient', 'DocumentRequest', 'LoadingUnloading1c', 'QuestionToAccountant']
 parent_dir = '/mnt/c/rrr/test/'
 
@@ -18,7 +20,7 @@ for i, file_name in enumerate(FILE_NAMES):
 
 
 
-BUFFER_SIZE = 1000
+BUFFER_SIZE = 50
 BATCH_SIZE = 2
 TAKE_SIZE = 10
 
@@ -45,7 +47,7 @@ vocab_size
 
 encoder = tfds.features.text.TokenTextEncoder(vocabulary_set)
 
-# example_text = next(iter(all_labeled_data))[0].numpy()
+example_text = next(iter(all_labeled_data))[0].numpy()
 # encoded_example = encoder.encode(example_text)
 
 
@@ -82,12 +84,12 @@ vocab_size += 1
 
 
 model = tf.keras.Sequential()
-model.add(tf.keras.layers.Embedding(vocab_size, 5))
-model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(32)))
+model.add(tf.keras.layers.Embedding(vocab_size, 4))
+model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(32, dropout=0.2, recurrent_dropout=0.2)))
 
 # Один или более плотных слоев.
 # Отредактируйте список в строке `for` чтобы поэкспериментировать с размером слоев.
-for units in [32]:
+for units in [32, 32]:
   model.add(tf.keras.layers.Dense(units, activation='relu'))
 
 # Выходной слой. Первый аргумент - число меток.
@@ -98,8 +100,8 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 
-history = model.fit(train_data, epochs=1, validation_data=test_data)
-
+model.fit(train_data, epochs=5, steps_per_epoch=500, validation_data=test_data)
+model.save('text.h5')
 
 eval_loss, eval_acc = model.evaluate(test_data)
 

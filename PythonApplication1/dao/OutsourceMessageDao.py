@@ -10,20 +10,20 @@ class OutsourceMessageDao:
                 port="6432"
             )
 
-    def selectMessagesByIds(self, ids):
+    def selectMessagesByIds(self, ids, limit = 1000):
       con = self.__openConnection()
       cur = con.cursor() 
       t = ', '.join(str(i[0]) for i in ids)
       cur.execute('''select t.message
                     from (select m.message,
-                                row_number() over (partition by task_id order by id) as rn
+                                row_number() over (partition by task_id order by create_date) as rn
                         from message as m
                         where m.task_id in ('''+t+''')
                             and m.direction = 'ToEmployee') as t
-                    where t.rn = 1''')
+                    where t.rn = 1 and length(t.message) > 2
+                    limit ''' + str(limit) + ''' ''')
         
       rows = cur.fetchall()
-
       con.close()  
 
       return rows

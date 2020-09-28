@@ -7,7 +7,7 @@ import os
 import glob
 import csv
 
-class TaskDataSetService:
+class TaskDataSetService2:
     taskDao = OutsourceTaskDao()
     messageDao = OutsourceMessageDao()
 
@@ -15,19 +15,25 @@ class TaskDataSetService:
         categories = ['Payroll', 'CallbackClient', 'DocumentRequest', 'LoadingUnloading1c', 'QuestionToAccountant']
         # categories = ['CallbackClient']
 
-        for category in categories:
-            files = glob.glob(r'C:\rrr\test\\train\\'+category+'\\*')
-            for f in files:
-                os.remove(f)
+        filePath = r'C:\rrr\test\\data.csv'
 
-            ids = self.taskDao.selectTaskIdsByCategory(category, 50000)
-            messages = self.messageDao.selectMessagesByIds(ids, 1000)
-            # lines = [self.__clean_text(message[0]) for message in messages]
-            for idx, val in enumerate(messages):
-                self.__writeFileTxt(category, idx, self.__clean_text(val[0]))
+        if os.path.exists(filePath):
+            os.remove(filePath)
 
-            # self.__writeFile(category, lines)
-            print('writed - ', category)
+        with open(filePath, 'w+', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Category", "Description"])
+
+            for category in categories:
+                ids = self.taskDao.selectTaskIdsByCategory(category, 50000)
+                messages = self.messageDao.selectMessagesByIds(ids, 1000)
+                lines = [self.__clean_text(message[0]) for message in messages]
+                
+                for line in lines:
+                    if (len(line) > 0):
+                        writer.writerow([category, line])
+
+                print('writed - ', category)
 
         print('finish')
 
